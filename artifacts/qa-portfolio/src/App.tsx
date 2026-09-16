@@ -7,10 +7,12 @@ import NotFound from '@/pages/not-found';
 import {
   ArrowDownRight,
   ArrowUpRight,
-  Check,
-  CircleDot,
+  BriefcaseBusiness,
+  Camera,
   Copy,
+  GraduationCap,
   Linkedin,
+  MapPin,
   Mail,
   Menu,
   Moon,
@@ -90,15 +92,15 @@ function Home() {
           <div className="page-width hero-grid">
             <div className="hero-copy">
               <span className="eyebrow">Software quality · Jakarta, Indonesia</span>
-              <h1>Quality is a <em>conversation</em>, not a final step.</h1>
-              <p className="hero-lede">I help teams ship with more confidence by turning uncertain behavior into observable, repeatable signals — from the first acceptance criteria to the last API check.</p>
+              <h1>Muhammad Malik <em>Rachman.</em></h1>
+              <p className="hero-lede">Software Quality Assurance Engineer focused on automation testing, API validation, and dependable web delivery.</p>
               <div className="hero-ctas">
                 <button className="button-primary" onClick={() => scrollTo('work')} data-testid="button-view-work">Explore selected work <ArrowDownRight size={15} /></button>
                 <a className="button-quiet" href={`mailto:${portfolio.email}`} data-testid="link-email-hero">Start a conversation <ArrowUpRight size={15} /></a>
               </div>
               <div className="availability"><span className="status-dot" /> Available for new challenges <span className="font-mono-ui">· GMT+7</span></div>
             </div>
-            <WorkspacePreview />
+            <ProfileCard />
           </div>
         </section>
 
@@ -214,18 +216,29 @@ const projects: Project[] = [
   { id: 'release-signal', eyebrow: 'Case study / 03', title: 'A calmer release signal', description: 'Turned flaky end-to-end checks into actionable feedback for the delivery team.', detail: 'Grouped failures by cause, tightened test data setup, and documented the handful of signals worth blocking a release on.', tags: ['CI', 'Test design'] },
 ];
 
-function WorkspacePreview() {
+function ProfileCard() {
   return (
-    <div className="workspace-card" aria-label="Illustration of a QA workspace dashboard">
-      <div className="workspace-top"><div className="traffic-lights"><span /><span /><span /></div><span className="workspace-label">qa / release-readiness.md</span></div>
-      <div className="workspace-body">
-        <div className="workspace-title"><div><h3>Release readiness</h3><p>build 184 · checked 09:42 GMT+7</p></div><div className="pass-ring"><span>94%</span></div></div>
-        <div className="matrix" aria-hidden="true">{Array.from({ length: 48 }, (_, i) => <i key={i} />)}</div>
-        <div className="check-list">
-          <div className="check-row"><span><strong>Critical journeys</strong> · 18 checks</span><b><Check size={12} /> passed</b></div>
-          <div className="check-row"><span><strong>API contracts</strong> · 32 checks</span><b><Check size={12} /> passed</b></div>
-          <div className="check-row"><span><strong>Exploratory notes</strong> · 04 open</span><b><CircleDot size={11} /> reviewed</b></div>
+    <div className="workspace-card profile-card" aria-label="Muhammad Malik Rachman's personal information">
+      <div className="workspace-top"><div className="traffic-lights"><span /><span /><span /></div><span className="workspace-label">personal / profile.md</span></div>
+      <div className="profile-card-body">
+        <div className="profile-intro">
+          <div className="profile-photo" aria-label="Profile photo placeholder">
+            <span className="profile-initials">MM</span>
+            <span className="photo-note"><Camera size={12} /> Add your photo</span>
+          </div>
+          <div className="profile-name">
+            <span className="eyebrow">Hello, I am</span>
+            <h3>Muhammad Malik<br /><em>Rachman</em></h3>
+            <p>Quality Assurance Engineer</p>
+          </div>
         </div>
+        <div className="profile-details">
+          <div className="profile-detail"><BriefcaseBusiness size={14} /><span><small>Role</small><strong>Automation &amp; API</strong></span></div>
+          <div className="profile-detail"><MapPin size={14} /><span><small>Location</small><strong>Indonesia · GMT+7 · Open to remote</strong></span></div>
+          <div className="profile-detail"><GraduationCap size={14} /><span><small>Education</small><strong>BINUS University · Information Systems</strong></span></div>
+        </div>
+        <div className="profile-status"><span className="status-dot" /> Available for new challenges</div>
+        <div className="profile-links"><a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={12} /></a><a href={portfolio.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={12} /></a><a href={`mailto:${portfolio.email}`}>Email <ArrowUpRight size={12} /></a></div>
       </div>
     </div>
   );
