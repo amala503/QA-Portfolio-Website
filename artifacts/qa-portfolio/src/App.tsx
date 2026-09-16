@@ -190,7 +190,7 @@ function Home() {
           <span>© 2025 Muhammad Malik Rachman · Built with care, tested with intent.</span>
           <div className="footer-links">
             <a href={portfolio.github} target="_blank" rel="noreferrer" data-testid="link-github">GitHub</a>
-            <a href="mailto:hello@example.com" data-testid="link-footer-email">Email</a>
+            <a href={`mailto:${portfolio.email}`} data-testid="link-footer-email">Email</a>
             <button onClick={() => scrollTo('top')} data-testid="button-back-top">Back to top ↑</button>
           </div>
         </div>
