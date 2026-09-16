@@ -83,8 +83,9 @@
 .page-width { width: min(1120px, calc(100% - 64px)); margin: 0 auto; }
 
 .floating-nav {
-  position: sticky;
+  position: fixed;
   top: 18px;
+  left: 50%;
   z-index: 50;
   display: flex;
   align-items: center;
@@ -92,7 +93,8 @@
   gap: 22px;
   width: min(880px, calc(100% - 40px));
   min-height: 58px;
-  margin: 18px auto -76px;
+  margin: 0;
+  transform: translateX(-50%);
   padding: 7px 10px;
   border: 1px solid hsl(var(--border) / .76);
   border-radius: 18px;
@@ -236,7 +238,7 @@ blockquote { margin: 0; color: hsl(var(--foreground)); font-size: 12px; font-wei
 
 @media (max-width: 680px) {
   .page-width { width: min(100% - 36px, 560px); }
-  .floating-nav { top: 10px; width: calc(100% - 22px); margin-top: 10px; margin-bottom: -68px; }
+  .floating-nav { top: 10px; width: calc(100% - 22px); }
   .nav-links { display: none; position: absolute; top: 65px; right: 0; left: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 9px; border: 1px solid hsl(var(--border)); border-radius: 15px; background: hsl(var(--card) / .97); box-shadow: 0 12px 30px hsl(220 30% 30% / .1); }
   .nav-links.open { display: flex; }
   .nav-links button { padding: 12px 13px; text-align: left; }
