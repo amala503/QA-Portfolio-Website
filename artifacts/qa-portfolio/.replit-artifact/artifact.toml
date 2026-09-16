@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "QA Portfolio"
+description = "A polished personal portfolio for a software quality assurance engineer, showcasing testing expertise, automation projects, professional experience, and contact details in a light-first workspace-inspired interface."
+version = "1.0.0"
+id = "artifacts/qa-portfolio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18475
+
+[services.development]
+run = "pnpm --filter @workspace/qa-portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/qa-portfolio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/qa-portfolio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18475"
+BASE_PATH = "/"
