@@ -141,9 +141,9 @@ function Home() {
           <div className="page-width hero-grid">
             <div className="hero-copy">
               <span className="eyebrow">Software quality · Indonesia</span>
-              <h1>Hi there! I&apos;m Malik. A <em>Software QA Engineer</em> focused on quality.</h1>
+              <h1>Hi there! I&apos;m Amala. A <em>Website &amp; mobile QA.</em></h1>
               <div className="availability-pill"><span className="status-dot" /> Available for new challenges</div>
-              <p className="hero-lede">I help teams ship with more confidence through thoughtful testing, useful automation, and clear quality signals.</p>
+              <p className="hero-lede">I ensure product quality through hands-on manual testing, test automation, and clear defect reporting to help teams deliver reliable products.</p>
               <div className="hero-ctas">
                 <button className="button-primary" onClick={() => scrollTo('work')}>View my work <ArrowDownRight size={15} /></button>
                 <a className="button-quiet" href={`mailto:${portfolio.email}`}>Let&apos;s talk <ArrowUpRight size={15} /></a>
@@ -155,7 +155,7 @@ function Home() {
 
         <section className="capability-strip" id="capabilities">
           <div className="page-width capability-cards">
-            <CapabilityCard icon={<Network size={23} />} title="API validation" text="Finding the edge cases before they reach the interface." />
+            <CapabilityCard icon={<Network size={23} />} title="Manual testing" text="Finding the edge cases before they reach the interface." />
             <CapabilityCard icon={<TestTube2 size={23} />} title="Automation testing" text="Building stable checks for the journeys that matter most." />
             <CapabilityCard icon={<ShieldCheck size={23} />} title="Release confidence" featured text="Making quality visible from first ticket to final release." />
           </div>
