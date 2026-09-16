@@ -40,6 +40,108 @@ const portfolio = {
 
 const tools = ['Playwright', 'Postman', 'JavaScript', 'TypeScript', 'Jira', 'GitHub Actions'];
 
+type ExperienceProject = {
+  name: string;
+  bullets: string[];
+};
+
+type ProfessionalExperience = {
+  date: string;
+  role: string;
+  company: string;
+  projects: ExperienceProject[];
+};
+
+const professionalExperiences: ProfessionalExperience[] = [
+  {
+    date: 'August 2025 — Present',
+    role: 'Quality Assurance',
+    company: 'PT Telkom Satelit Indonesia',
+    projects: [
+      {
+        name: 'MYTelkomsat Website & Mobile',
+        bullets: [
+          'Executed 300+ manual tests for web and mobile applications using Qase, contributing to a 100% completed system with stable operation and no critical issues after launch.',
+          'Identified and reported 50+ defects, categorized issues by severity, and collaborated with developers to resolve critical bugs before release, resulting in zero major incidents post-launch.',
+        ],
+      },
+      {
+        name: 'Aplikasi Bispro',
+        bullets: [
+          'Conducted manual testing using Qase to identify defects and support ongoing system maintenance and improvements, identifying 41 defects during testing.',
+          'Implemented 100% of targeted business processes into the system, reducing manual work and accelerating operational workflows.',
+        ],
+      },
+      {
+        name: 'Aplikasi Tsatqo',
+        bullets: [
+          'Developed and managed 200+ test cases using Qase for attendance, leave, and overtime mobile and website applications.',
+          'Performed manual and automation testing using Katalon Studio, identifying 20+ defects from mobile and 15+ defects from the website, ranging from minor UI issues to critical functional bugs.',
+        ],
+      },
+      {
+        name: 'Aplikasi Buku Tamu',
+        bullets: [
+          'Prepared test plans and executed testing for an internal visitor management system covering visitor, intern, and trainee data across Telkomsat head office and branch offices, designing 80+ test cases and identifying 10+ defects before release.',
+          'Contributed to a 100% completed system now used company-wide and continue to support ongoing maintenance and improvements.',
+        ],
+      },
+      {
+        name: 'Aplikasi CMS Billing',
+        bullets: [
+          'Conducted testing for a new CMS Billing enhancement, designing 70+ test cases to validate the transition from manual processes to a fully automated workflow and identifying 8+ defects before release.',
+        ],
+      },
+      {
+        name: 'MARYVEL (Legal System)',
+        bullets: [
+          'Executed manual and automation testing using Qase and Katalon Studio for application enhancements, creating 120+ test cases and identifying 35+ defects across UI and functional workflows.',
+          'Managed bug reports and coordinated with the development team on timely resolution, supporting successful 100% delivery of the system.',
+        ],
+      },
+      {
+        name: 'Aplikasi Booking Ruang Meeting',
+        bullets: [
+          'Executed testing for a meeting room booking system, designing 100+ test cases to validate booking and approval workflows and identifying 8+ defects during validation.',
+          'Contributed to a 100% completed system adopted by all units company-wide and continue to support maintenance and improvements based on user feedback.',
+        ],
+      },
+      {
+        name: 'Registration Deal',
+        bullets: [
+          'Conducted 80+ manual tests using Qase, identifying and tracking 10+ defects to ensure system quality and support continuous improvements.',
+        ],
+      },
+    ],
+  },
+  {
+    date: 'February 2024 — June 2024',
+    role: 'System Analyst Intern',
+    company: 'PT Telkom Satelit Indonesia',
+    projects: [
+      {
+        name: 'Billing Center Project',
+        bullets: [
+          'Enhanced the Requirement Definition Document (RDD), including functional and non-functional requirements, flowcharts, ERDs, use cases, activity diagrams, and process documentation to support system development.',
+        ],
+      },
+      {
+        name: 'OSF Tracking Finance (RAB) Project',
+        bullets: [
+          'Revised and optimized flowcharts and use case diagrams to represent updated system processes and facilitate clearer communication across teams.',
+        ],
+      },
+      {
+        name: 'DTP Telkomsat',
+        bullets: [
+          'Led requirement analysis and created RDDs, wireframes, business process flows, and UML diagrams to support development of a satellite service transaction system that reached 80% completion.',
+          'Prepared testing documentation to validate system quality and requirement compliance.',
+        ],
+      },
+    ],
+  },
+];
+
 type Project = {
   id: string;
   eyebrow: string;
@@ -163,7 +265,7 @@ function Home() {
 
         <section className="intro-section" id="about">
           <div className="page-width intro-grid">
-            <div className="experience-stat"><strong>04</strong><span>QA focus<br />areas</span></div>
+            <div className="experience-stat"><strong>08</strong><span>QA projects<br />tested</span></div>
             <div>
               <h2>Quality is not a final step. It&apos;s a <em>conversation.</em></h2>
               <p>I work at the seam between a product idea and its real-world behavior. I ask useful questions early, turn them into observable checks, and leave teams with better context to move forward.</p>
@@ -190,17 +292,42 @@ function Home() {
         </section>
 
         <section className="resume-section" id="experience">
-          <div className="page-width resume-grid">
+          <div className="page-width resume-grid resume-grid-detailed">
             <div className="timeline-block">
               <span className="eyebrow">Experience</span>
               <h2>A curious eye for the details others <em>skip.</em></h2>
-              <Experience date="2024 — present" role="Software QA Engineer" company="Product engineering teams" text="Own end-to-end quality activities across web delivery, API checks, regression planning, and the automation feedback loop in CI." />
-              <Experience date="2023 — 2024" role="QA Intern & project contributor" company="Digital product environment" text="Built a foundation in functional testing and defect communication while turning acceptance criteria into durable test cases." />
-              <Experience date="2021 — 2025" role="Information Systems" company="BINUS University" text="Studied systems thinking, software delivery, and the relationship between technology, people, and product decisions." />
+              {professionalExperiences.map((experience) => <Experience key={`${experience.company}-${experience.date}`} {...experience} />)}
             </div>
-            <div className="education-stack">
-              <div className="education-card"><Sparkles size={24} /><strong>Automation &amp; API</strong><span>Professional focus</span></div>
-              <div className="education-card accent-card"><Sparkles size={24} /><strong>Information Systems</strong><span>BINUS University · Graduated 2025</span></div>
+            <div className="resume-side">
+              <section className="resume-side-section">
+                <span className="eyebrow">Education</span>
+                <article className="education-detail-card">
+                  <div className="detail-card-topline"><Sparkles size={18} /><span>September 2021 — July 2025</span></div>
+                  <h3>Brawijaya University</h3>
+                  <p className="detail-muted">Malang, Indonesia</p>
+                  <p><strong>Bachelor&apos;s Degree in Informatics Engineering</strong></p>
+                  <p className="thesis"><strong>Thesis:</strong> Pengembangan Sistem Transaksi Layanan Satelit Berbasis Website Pada Perusahaan Jasa Telekomunikasi (Studi Kasus: PT. XYZ)</p>
+                </article>
+              </section>
+
+              <section className="resume-side-section">
+                <span className="eyebrow">Certification &amp; training</span>
+                <div className="training-list">
+                  <article className="training-card"><strong>MSIB Batch 6</strong><span>February 2024 — June 2024 · System Analyst</span><p>Completed the five-month MSIB program at Telkom Satelit Indonesia and contributed to several company projects.</p></article>
+                  <article className="training-card"><strong>Microsoft Office Training</strong><span>May 2025 · Participant</span><p>Successfully achieved all requirements of the professional competency training and assessment.</p></article>
+                  <article className="training-card"><strong>GFT Bootcamp</strong><span>2023 · Bootcamp Participant</span><p>Completed an offline object-oriented programming course using the Grammatical Fast Track method and finished three assigned projects with 100% completion.</p></article>
+                </div>
+              </section>
+
+              <section className="resume-side-section">
+                <span className="eyebrow">Skills</span>
+                <div className="skill-groups">
+                  <div><strong>Testing &amp; QA</strong><span>Qase · Katalon Studio · SortSite</span></div>
+                  <div><strong>System Analysis</strong><span>Requirement Gathering · SRS/FRS · Use Case · Flowchart · ERD · UML</span></div>
+                  <div><strong>Project &amp; Documentation</strong><span>Jira · Notion · Microsoft Office</span></div>
+                  <div><strong>UI &amp; Workflow</strong><span>Figma · Balsamiq · Draw.io · Lucidchart</span></div>
+                </div>
+              </section>
             </div>
           </div>
         </section>
@@ -221,7 +348,7 @@ function Home() {
 
       <footer className="footer">
         <div className="page-width footer-inner">
-          <span>© 2025 Muhammad Malik Rachman · Tested with intent.</span>
+          <span>© 2025 Amala · Tested with intent.</span>
           <div className="footer-links"><a href={portfolio.github} target="_blank" rel="noreferrer"><Github size={13} /> GitHub</a><button onClick={() => scrollTo('top')}>Back to top ↑</button></div>
         </div>
       </footer>
@@ -231,10 +358,10 @@ function Home() {
 
 function ProfileVisual() {
   return (
-    <div className="profile-visual" aria-label="Profile photo of Muhammad Malik Rachman">
+    <div className="profile-visual" aria-label="Profile photo of Amala">
       <div className="portrait-orbit" />
       <div className="portrait-frame">
-        <img className="profile-photo" src="/profile-photo.png" alt="Muhammad Malik Rachman" />
+        <img className="profile-photo" src="/profile-photo.png" alt="Amala" />
       </div>
       <div className="social-float"><a href={portfolio.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={14} /></a><a href={portfolio.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={14} /></a><a href={`mailto:${portfolio.email}`} aria-label="Email"><Mail size={14} /></a></div>
     </div>
@@ -245,8 +372,23 @@ function CapabilityCard({ icon, title, text, featured = false }: { icon: ReactNo
   return <article className={`capability-card ${featured ? 'featured' : ''}`}><div className="capability-icon">{icon}</div><h3>{title}</h3><p>{text}</p><span className="card-arrow"><ArrowUpRight size={14} /></span></article>;
 }
 
-function Experience({ date, role, company, text }: { date: string; role: string; company: string; text: string }) {
-  return <article className="timeline-item"><span className="timeline-date">{date}</span><div><h3>{role} <span>@ {company}</span></h3><p>{text}</p></div></article>;
+function Experience({ date, role, company, projects }: ProfessionalExperience) {
+  return (
+    <article className="timeline-item experience-entry">
+      <span className="timeline-date">{date}</span>
+      <div>
+        <h3>{role} <span>@ {company}</span></h3>
+        <div className="experience-projects">
+          {projects.map((project) => (
+            <section className="experience-project" key={project.name}>
+              <h4>{project.name}</h4>
+              <ul>{project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+            </section>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
 }
 
 function ProjectCard({ project, active, onToggle }: { project: Project; active: boolean; onToggle: () => void }) {
