@@ -6,15 +6,20 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import {
   ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
   ArrowUpRight,
   Camera,
+  Check,
   Copy,
+  Github,
   Linkedin,
   Mail,
   Menu,
   Moon,
   Network,
   ShieldCheck,
+  Sparkles,
   Sun,
   TestTube2,
   X,
@@ -27,6 +32,54 @@ import {
 } from 'wouter';
 
 const queryClient = new QueryClient();
+
+const portfolio = {
+  email: 'muhammad.malik.qa@example.com',
+  linkedin: 'https://www.linkedin.com/',
+  github: 'https://github.com/',
+};
+
+const tools = ['Playwright', 'Postman', 'JavaScript', 'TypeScript', 'Jira', 'GitHub Actions'];
+
+type Project = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  detail: string;
+  tags: string[];
+  tone: 'coral' | 'blue' | 'yellow';
+};
+
+const projects: Project[] = [
+  {
+    id: 'commerce-checkout',
+    eyebrow: 'Web automation',
+    title: 'A checkout that tells the truth',
+    description: 'Mapped critical purchase paths and built a layered smoke suite for browser and API behavior.',
+    detail: 'Moved the team from a long regression list to a focused release signal: critical path checks in CI, exploratory charters around payment edges, and defects with reproducible evidence.',
+    tags: ['Playwright', 'Risk mapping'],
+    tone: 'coral',
+  },
+  {
+    id: 'api-contracts',
+    eyebrow: 'API validation',
+    title: 'Contracts before screens',
+    description: 'Validated response shapes and failure states before UI work landed.',
+    detail: 'Created positive, negative, and boundary checks so frontend and backend could work from the same observable contract.',
+    tags: ['Postman', 'REST'],
+    tone: 'blue',
+  },
+  {
+    id: 'release-signal',
+    eyebrow: 'Quality process',
+    title: 'A calmer release signal',
+    description: 'Turned flaky end-to-end checks into actionable feedback for the delivery team.',
+    detail: 'Grouped failures by cause, tightened test data setup, and documented the few signals worth blocking a release on.',
+    tags: ['CI', 'Test design'],
+    tone: 'yellow',
+  },
+];
 
 function Home() {
   const [dark, setDark] = useState(false);
@@ -41,16 +94,16 @@ function Home() {
     document.documentElement.classList.toggle('dark', isDark);
   }, []);
 
+  const scrollTo = (id: string) => {
+    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const toggleTheme = () => {
     const next = !dark;
     setDark(next);
     document.documentElement.classList.toggle('dark', next);
     localStorage.setItem('qa-theme', next ? 'dark' : 'light');
-  };
-
-  const scrollTo = (id: string) => {
-    setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const copyEmail = async () => {
@@ -61,124 +114,107 @@ function Home() {
 
   return (
     <div className="site-shell">
-      <header className="topbar">
-        <div className="topbar-inner">
-          <button className="brand-mark" onClick={() => scrollTo('top')} data-testid="button-home" aria-label="Back to top">
-            <span className="brand-square">MM</span>
-            <span className="brand-name">Muhammad Malik Rachman</span>
+      <header className="floating-nav">
+        <button className="nav-brand" onClick={() => scrollTo('top')} aria-label="Back to top">
+          <span className="brand-square">MM</span>
+        </button>
+        <nav className={`nav-links ${menuOpen ? 'open' : ''}`} aria-label="Primary navigation">
+          <button onClick={() => scrollTo('about')}>ABOUT</button>
+          <button onClick={() => scrollTo('capabilities')}>SERVICES</button>
+          <button onClick={() => scrollTo('work')}>PORTFOLIO</button>
+          <button onClick={() => scrollTo('experience')}>RESUME</button>
+          <button onClick={() => scrollTo('contact')}>CONTACT</button>
+          <button onClick={() => scrollTo('work')}>BLOG</button>
+        </nav>
+        <div className="nav-actions">
+          <button className="nav-theme" onClick={toggleTheme} aria-label={dark ? 'Use light theme' : 'Use dark theme'}>
+            {dark ? <Sun size={14} /> : <Moon size={14} />}
+            <span> {dark ? 'LIGHT' : 'DARK'} VERSION</span>
           </button>
-          <nav className={`nav-links ${menuOpen ? 'open' : ''}`} aria-label="Primary navigation">
-            <button onClick={() => scrollTo('capabilities')} data-testid="link-capabilities">Capabilities</button>
-            <button onClick={() => scrollTo('work')} data-testid="link-work">Selected work</button>
-            <button onClick={() => scrollTo('about')} data-testid="link-about">About</button>
-            <button onClick={() => scrollTo('contact')} data-testid="link-contact">Contact</button>
-          </nav>
-          <div className="header-actions">
-            <button className="icon-button" onClick={toggleTheme} data-testid="button-theme-toggle" aria-label={dark ? 'Use light theme' : 'Use dark theme'}>
-              {dark ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <button className="icon-button mobile-menu-button" onClick={() => setMenuOpen(!menuOpen)} data-testid="button-mobile-menu" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}>
-              {menuOpen ? <X size={17} /> : <Menu size={17} />}
-            </button>
-          </div>
+          <button className="mobile-menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}>
+            {menuOpen ? <X size={16} /> : <Menu size={16} />}
+          </button>
         </div>
       </header>
 
       <main id="top">
-        <section className="hero">
+        <section className="hero reference-hero">
           <div className="page-width hero-grid">
             <div className="hero-copy">
-              <span className="eyebrow">Software quality · Jakarta, Indonesia</span>
-              <h1>Muhammad Malik <em>Rachman.</em></h1>
-              <p className="hero-lede">Software Quality Assurance Engineer focused on automation testing, API validation, and dependable web delivery.</p>
+              <span className="eyebrow">Software quality · Indonesia</span>
+              <h1>Hi there! I&apos;m Malik. A <em>Software QA Engineer</em> focused on quality.</h1>
+              <div className="availability-pill"><span className="status-dot" /> Available for new challenges</div>
+              <p className="hero-lede">I help teams ship with more confidence through thoughtful testing, useful automation, and clear quality signals.</p>
               <div className="hero-ctas">
-                <button className="button-primary" onClick={() => scrollTo('work')} data-testid="button-view-work">Explore selected work <ArrowDownRight size={15} /></button>
-                <a className="button-quiet" href={`mailto:${portfolio.email}`} data-testid="link-email-hero">Start a conversation <ArrowUpRight size={15} /></a>
+                <button className="button-primary" onClick={() => scrollTo('work')}>View my work <ArrowDownRight size={15} /></button>
+                <a className="button-quiet" href={`mailto:${portfolio.email}`}>Let&apos;s talk <ArrowUpRight size={15} /></a>
               </div>
-              <div className="availability"><span className="status-dot" /> Available for new challenges <span className="font-mono-ui">· GMT+7</span></div>
             </div>
-            <ProfileCard />
+            <ProfileVisual />
           </div>
         </section>
 
-        <section className="section" id="capabilities">
-          <div className="page-width">
-            <div className="section-heading">
-              <div><span className="eyebrow">01 / How I help</span><h2>A QA practice built around useful evidence.</h2></div>
-              <p>Good testing is not about finding more bugs. It is about making the right risks visible early enough to do something about them.</p>
-            </div>
-            <div className="capability-grid">
-              <Capability icon={<ShieldCheck size={17} />} title="Product confidence" featured description="A risk-led approach that gives product and engineering a shared language for what 'ready' means." items={['Test strategy & planning', 'Exploratory test charters', 'Release risk mapping']} />
-              <Capability icon={<TestTube2 size={17} />} title="Automation that lasts" description="Pragmatic suites that protect critical journeys without becoming another product to maintain." items={['Playwright & WebdriverIO', 'CI smoke coverage', 'Stable test data']} />
-              <Capability icon={<Network size={17} />} title="API validation" description="Checks the contracts underneath the interface, where fast feedback and honest failures start." items={['REST contract checks', 'Postman collections', 'Boundary scenarios']} />
-            </div>
+        <section className="capability-strip" id="capabilities">
+          <div className="page-width capability-cards">
+            <CapabilityCard icon={<Network size={23} />} title="API validation" text="Finding the edge cases before they reach the interface." />
+            <CapabilityCard icon={<TestTube2 size={23} />} title="Automation testing" text="Building stable checks for the journeys that matter most." />
+            <CapabilityCard icon={<ShieldCheck size={23} />} title="Release confidence" featured text="Making quality visible from first ticket to final release." />
           </div>
         </section>
 
-        <section className="section" id="about">
-          <div className="page-width split-grid">
+        <section className="intro-section" id="about">
+          <div className="page-width intro-grid">
+            <div className="experience-stat"><strong>04</strong><span>QA focus<br />areas</span></div>
             <div>
-              <span className="eyebrow">02 / Point of view</span>
-              <p className="statement">Leave every system <em>clearer</em> than you found it.</p>
-              <p className="body-copy">I am most useful at the seam between a product idea and its real-world behavior. I ask awkward questions early, make them executable, then leave behind tools and context that help the whole team move faster.</p>
+              <h2>Quality is not a final step. It&apos;s a <em>conversation.</em></h2>
+              <p>I work at the seam between a product idea and its real-world behavior. I ask useful questions early, turn them into observable checks, and leave teams with better context to move forward.</p>
             </div>
-            <div className="principles">
-              <Principle number="01" title="Observe before assuming" text="I start with the user's workflow and the system's signals, not just the ticket. The gap is usually where the interesting risk lives." />
-              <Principle number="02" title="Automate the repeatable" text="Automation earns its place when it gives the team a dependable answer in the moments humans should not have to repeat." />
-              <Principle number="03" title="Make failures legible" text="A red build is only useful when the next person can understand what happened, reproduce it, and choose a path forward." />
-            </div>
+          </div>
+          <div className="page-width trust-row">
+            <span>Tools I work with</span>
+            <div className="tool-list">{tools.map((tool) => <span className="tool" key={tool}>{tool}</span>)}</div>
+            <div className="quote-mark">“</div>
+            <blockquote>Make failures legible, then make the next step easier.</blockquote>
           </div>
         </section>
 
-        <section className="section" id="experience">
-          <div className="page-width experience-layout">
-            <div>
-              <span className="eyebrow">03 / Experience</span>
-              <p className="statement">Curious about the details others <em>skip.</em></p>
-              <p className="body-copy">My toolkit follows the question at hand. Sometimes that is a browser trace; sometimes it is a careful conversation with the person who will live with the feature.</p>
-            </div>
-            <div className="timeline">
-              <Experience date="2024 — now" role="Software QA Engineer" company="Product engineering teams" text="Own end-to-end quality activities across web delivery: scenario design, API checks, regression planning, and the automation feedback loop in CI." />
-              <Experience date="2023 — 2024" role="QA Intern & Project Contributor" company="Digital product environment" text="Built a foundation in functional testing and defect communication while helping teams turn acceptance criteria into durable test cases." />
-              <Experience date="2021 — 2025" role="Information Systems" company="BINUS University · Graduated 2025" text="Studied systems thinking, software delivery, and the relationship between technology, people, and the decisions products make possible." />
-            </div>
-          </div>
-        </section>
-
-        <section className="section" id="work">
+        <section className="work-section" id="work">
           <div className="page-width">
-            <div className="section-heading">
-              <div><span className="eyebrow">04 / Selected work</span><h2>Small case studies from the quality desk.</h2></div>
-              <p>Names are generalized where work was private. The thinking, constraints, and outcomes are real.</p>
+            <div className="work-heading">
+              <div><span className="work-eyebrow">Selected work</span><h2>My recent <span>work</span></h2></div>
+              <div className="carousel-buttons"><button aria-label="Previous work"><ArrowLeft size={15} /></button><button aria-label="Next work"><ArrowRight size={15} /></button></div>
             </div>
-            <div className="project-grid">
-              {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} active={activeProject === project.id} onToggle={() => setActiveProject(activeProject === project.id ? null : project.id)} />
-              ))}
+            <div className="project-grid reference-project-grid">
+              {projects.map((project) => <ProjectCard key={project.id} project={project} active={activeProject === project.id} onToggle={() => setActiveProject(activeProject === project.id ? null : project.id)} />)}
             </div>
           </div>
         </section>
 
-        <section className="section">
-          <div className="page-width">
-            <div className="toolkit-band">
-              <span>Current working toolkit</span>
-              <div className="tool-list">
-                {tools.map((tool) => <span className="tool" key={tool} data-testid={`text-tool-${tool.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>{tool}</span>)}
-              </div>
+        <section className="resume-section" id="experience">
+          <div className="page-width resume-grid">
+            <div className="timeline-block">
+              <span className="eyebrow">Experience</span>
+              <h2>A curious eye for the details others <em>skip.</em></h2>
+              <Experience date="2024 — present" role="Software QA Engineer" company="Product engineering teams" text="Own end-to-end quality activities across web delivery, API checks, regression planning, and the automation feedback loop in CI." />
+              <Experience date="2023 — 2024" role="QA Intern & project contributor" company="Digital product environment" text="Built a foundation in functional testing and defect communication while turning acceptance criteria into durable test cases." />
+              <Experience date="2021 — 2025" role="Information Systems" company="BINUS University" text="Studied systems thinking, software delivery, and the relationship between technology, people, and product decisions." />
+            </div>
+            <div className="education-stack">
+              <div className="education-card"><Sparkles size={24} /><strong>Automation &amp; API</strong><span>Professional focus</span></div>
+              <div className="education-card accent-card"><Sparkles size={24} /><strong>Information Systems</strong><span>BINUS University · Graduated 2025</span></div>
             </div>
           </div>
         </section>
 
         <section className="contact-section" id="contact">
-          <div className="page-width">
-            <span className="eyebrow">05 / Say hello</span>
+          <div className="page-width contact-inner">
+            <span className="eyebrow">Let&apos;s connect</span>
             <h2>Have a tricky <em>release?</em></h2>
             <p>If you are building a product where quality needs a seat at the table, I would like to hear what you are working through.</p>
             <div className="contact-actions">
-              <a className="button-primary" href={`mailto:${portfolio.email}`} data-testid="link-email-contact"><Mail size={15} /> {portfolio.email}</a>
-              <button className="button-quiet" onClick={copyEmail} data-testid="button-copy-email"><Copy size={14} /> {copied ? 'Copied to clipboard' : 'Copy email'}</button>
-              <a className="button-quiet" href={portfolio.linkedin} target="_blank" rel="noreferrer" data-testid="link-linkedin"><Linkedin size={15} /> LinkedIn</a>
+              <a className="button-primary" href={`mailto:${portfolio.email}`}><Mail size={15} /> {portfolio.email}</a>
+              <button className="button-quiet" onClick={copyEmail}><Copy size={14} /> {copied ? 'Copied' : 'Copy email'}</button>
+              <a className="button-quiet" href={portfolio.linkedin} target="_blank" rel="noreferrer"><Linkedin size={15} /> LinkedIn</a>
             </div>
           </div>
         </section>
@@ -186,85 +222,41 @@ function Home() {
 
       <footer className="footer">
         <div className="page-width footer-inner">
-          <span>© 2025 Muhammad Malik Rachman · Built with care, tested with intent.</span>
-          <div className="footer-links">
-            <a href={portfolio.github} target="_blank" rel="noreferrer" data-testid="link-github">GitHub</a>
-            <a href={`mailto:${portfolio.email}`} data-testid="link-footer-email">Email</a>
-            <button onClick={() => scrollTo('top')} data-testid="button-back-top">Back to top ↑</button>
-          </div>
+          <span>© 2025 Muhammad Malik Rachman · Tested with intent.</span>
+          <div className="footer-links"><a href={portfolio.github} target="_blank" rel="noreferrer"><Github size={13} /> GitHub</a><button onClick={() => scrollTo('top')}>Back to top ↑</button></div>
         </div>
       </footer>
     </div>
   );
 }
 
-const portfolio = {
-  email: 'muhammad.malik.qa@example.com',
-  linkedin: 'https://www.linkedin.com/',
-  github: 'https://github.com/',
-};
-
-const tools = ['Playwright', 'Postman', 'JavaScript', 'TypeScript', 'Jira', 'GitHub Actions', 'SQL', 'Chrome DevTools'];
-
-type Project = { id: string; eyebrow: string; title: string; description: string; detail: string; tags: string[]; large?: boolean };
-const projects: Project[] = [
-  { id: 'commerce-checkout', eyebrow: 'Case study / 01', title: 'A checkout that tells the truth', description: 'Mapped the highest-risk purchase paths and built a layered smoke suite for web and API behavior.', detail: 'The useful shift was moving from a long regression list to a small, intentional signal: critical path checks in CI, exploratory charters around payment edges, and defect reports with reproducible evidence.', tags: ['Web testing', 'Playwright', 'Risk mapping'], large: true },
-  { id: 'api-contracts', eyebrow: 'Case study / 02', title: 'Contracts before screens', description: 'Validated response shapes and failure states before UI work landed.', detail: 'Created a lightweight collection of positive, negative, and boundary checks so frontend and backend could work from the same observable contract.', tags: ['API testing', 'Postman'] },
-  { id: 'release-signal', eyebrow: 'Case study / 03', title: 'A calmer release signal', description: 'Turned flaky end-to-end checks into actionable feedback for the delivery team.', detail: 'Grouped failures by cause, tightened test data setup, and documented the handful of signals worth blocking a release on.', tags: ['CI', 'Test design'] },
-];
-
-function ProfileCard() {
+function ProfileVisual() {
   return (
-    <div className="workspace-card profile-card" aria-label="Muhammad Malik Rachman's personal information">
-      <div className="workspace-top"><div className="traffic-lights"><span /><span /><span /></div><span className="workspace-label">personal / profile.md</span></div>
-      <div className="profile-card-body">
-        <div className="profile-intro">
-          <div className="profile-photo" aria-label="Profile photo placeholder">
-            <span className="profile-initials">MM</span>
-            <span className="photo-note"><Camera size={12} /> Add your photo</span>
-          </div>
-          <div className="profile-name">
-            <span className="eyebrow">Hello, I am</span>
-            <h3>Muhammad Malik<br /><em>Rachman</em></h3>
-            <p>Quality Assurance Engineer</p>
-          </div>
-        </div>
-        <div className="profile-card-note">Automation · API validation · Web delivery</div>
-      </div>
+    <div className="profile-visual" aria-label="Profile photo placeholder for Muhammad Malik Rachman">
+      <div className="portrait-orbit" />
+      <div className="portrait-frame"><span className="profile-initials">MM</span><span className="photo-note"><Camera size={12} /> Add your photo</span></div>
+      <div className="social-float"><a href={portfolio.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={14} /></a><a href={portfolio.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={14} /></a><a href={`mailto:${portfolio.email}`} aria-label="Email"><Mail size={14} /></a></div>
     </div>
   );
 }
 
-function Capability({ icon, title, description, items, featured = false }: { icon: ReactNode; title: string; description: string; items: string[]; featured?: boolean }) {
-  return <article className={`capability-card ${featured ? 'featured' : ''}`}><div className="capability-icon">{icon}</div><h3>{title}</h3><p>{description}</p><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></article>;
-}
-
-function Principle({ number, title, text }: { number: string; title: string; text: string }) {
-  return <article className="principle"><span className="principle-number">{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>;
+function CapabilityCard({ icon, title, text, featured = false }: { icon: ReactNode; title: string; text: string; featured?: boolean }) {
+  return <article className={`capability-card ${featured ? 'featured' : ''}`}><div className="capability-icon">{icon}</div><h3>{title}</h3><p>{text}</p><span className="card-arrow"><ArrowUpRight size={14} /></span></article>;
 }
 
 function Experience({ date, role, company, text }: { date: string; role: string; company: string; text: string }) {
-  return <article className="timeline-item"><span className="timeline-date">{date}</span><div><h3>{role} <span>↗ {company}</span></h3><p>{text}</p></div></article>;
+  return <article className="timeline-item"><span className="timeline-date">{date}</span><div><h3>{role} <span>@ {company}</span></h3><p>{text}</p></div></article>;
 }
 
 function ProjectCard({ project, active, onToggle }: { project: Project; active: boolean; onToggle: () => void }) {
-  return <article className={`project-card ${project.large ? 'large' : ''}`} data-testid={`card-project-${project.id}`}>
-    <div className="project-visual"><div className="project-topline"><span>{project.eyebrow}</span><ArrowUpRight size={15} /></div><h3>{project.title}</h3></div>
-    <div className="project-info"><p>{project.description}</p><div className="tag-row">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div><button className="project-action" onClick={onToggle} data-testid={`button-case-study-${project.id}`} aria-expanded={active}>{active ? 'Close notes' : 'Read case notes'} <ArrowUpRight size={13} /></button>{active && <div className="project-detail">{project.detail}</div>}</div>
+  return <article className={`project-card ${project.tone}`} data-testid={`card-project-${project.id}`}>
+    <div className="project-visual"><div className="project-topline"><span>{project.eyebrow}</span><ArrowUpRight size={15} /></div><div className="project-art"><span>{project.tone === 'coral' ? 'QA' : project.tone === 'blue' ? 'API' : 'CI'}</span></div><h3>{project.title}</h3></div>
+    <div className="project-info"><p>{project.description}</p><div className="tag-row">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div><button className="project-action" onClick={onToggle} aria-expanded={active}>{active ? 'Close notes' : 'Read case notes'} <ArrowUpRight size={13} /></button>{active && <div className="project-detail">{project.detail}</div>}</div>
   </article>;
 }
 
 function Router() {
-  return (
-    // Keep a shared shell (sidebar, navbar) outside the boundary so it
-    // survives a page crash.
-    <RoutedErrorBoundary>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route component={NotFound} />
-      </Switch>
-    </RoutedErrorBoundary>
-  );
+  return <RoutedErrorBoundary><Switch><Route path="/" component={Home} /><Route component={NotFound} /></Switch></RoutedErrorBoundary>;
 }
 
 function RoutedErrorBoundary({ children }: { children: ReactNode }) {
@@ -273,16 +265,7 @@ function RoutedErrorBoundary({ children }: { children: ReactNode }) {
 }
 
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
+  return <QueryClientProvider client={queryClient}><TooltipProvider><WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}><Router /></WouterRouter><Toaster /></TooltipProvider></QueryClientProvider>;
 }
 
 export default App;
