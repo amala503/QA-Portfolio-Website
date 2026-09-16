@@ -9,7 +9,6 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  Camera,
   Check,
   Copy,
   Github,
@@ -232,9 +231,11 @@ function Home() {
 
 function ProfileVisual() {
   return (
-    <div className="profile-visual" aria-label="Profile photo placeholder for Muhammad Malik Rachman">
+    <div className="profile-visual" aria-label="Profile photo of Muhammad Malik Rachman">
       <div className="portrait-orbit" />
-      <div className="portrait-frame"><span className="profile-initials">MM</span><span className="photo-note"><Camera size={12} /> Add your photo</span></div>
+      <div className="portrait-frame">
+        <img className="profile-photo" src="/profile-photo.png" alt="Muhammad Malik Rachman" />
+      </div>
       <div className="social-float"><a href={portfolio.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={14} /></a><a href={portfolio.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={14} /></a><a href={`mailto:${portfolio.email}`} aria-label="Email"><Mail size={14} /></a></div>
     </div>
   );
