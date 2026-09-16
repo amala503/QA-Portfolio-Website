@@ -7,12 +7,9 @@ import NotFound from '@/pages/not-found';
 import {
   ArrowDownRight,
   ArrowUpRight,
-  BriefcaseBusiness,
   Camera,
   Copy,
-  GraduationCap,
   Linkedin,
-  MapPin,
   Mail,
   Menu,
   Moon,
@@ -232,13 +229,7 @@ function ProfileCard() {
             <p>Quality Assurance Engineer</p>
           </div>
         </div>
-        <div className="profile-details">
-          <div className="profile-detail"><BriefcaseBusiness size={14} /><span><small>Role</small><strong>Automation &amp; API</strong></span></div>
-          <div className="profile-detail"><MapPin size={14} /><span><small>Location</small><strong>Indonesia · GMT+7 · Open to remote</strong></span></div>
-          <div className="profile-detail"><GraduationCap size={14} /><span><small>Education</small><strong>BINUS University · Information Systems</strong></span></div>
-        </div>
-        <div className="profile-status"><span className="status-dot" /> Available for new challenges</div>
-        <div className="profile-links"><a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={12} /></a><a href={portfolio.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={12} /></a><a href={`mailto:${portfolio.email}`}>Email <ArrowUpRight size={12} /></a></div>
+        <div className="profile-card-note">Automation · API validation · Web delivery</div>
       </div>
     </div>
   );
