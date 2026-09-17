@@ -158,7 +158,7 @@ const projects: Project[] = [
     title: 'Mobile and web Tsatqo',
     description: 'Tested attendance, leave, and overtime flows across mobile and web applications.',
     detail: 'Managed 200+ Qase test cases and used manual and automation testing with Katalon Studio, finding 20+ mobile defects and 15+ web defects.',
-    tags: ['Qase', 'Katalon Studio'],
+    tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
     tone: 'coral',
     image: '/tsatqo-mobile.png',
   },
@@ -168,7 +168,7 @@ const projects: Project[] = [
     title: 'Mobile Operational',
     description: 'A mobile application for tracking and booking the company’s operational vehicles.',
     detail: 'Worked as both QA and System Analyst by reviewing requirements, testing vehicle tracking and booking flows, and supporting reliable day-to-day operations.',
-    tags: ['Manual testing', 'Requirements'],
+    tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
     tone: 'blue',
   },
   {
@@ -177,7 +177,7 @@ const projects: Project[] = [
     title: 'MARVEL',
     description: 'A business contract management application used across the company.',
     detail: 'Worked as QA to test contract management workflows, report defects, and help ensure reliable handling of business agreements.',
-    tags: ['QA testing', 'Business workflows'],
+    tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
     tone: 'yellow',
   },
 ];
