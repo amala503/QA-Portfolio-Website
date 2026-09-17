@@ -11,7 +11,6 @@ import {
   ArrowUpRight,
   Check,
   Copy,
-  Github,
   Linkedin,
   Mail,
   Menu,
@@ -33,9 +32,8 @@ import {
 const queryClient = new QueryClient();
 
 const portfolio = {
-  email: 'muhammad.malik.qa@example.com',
-  linkedin: 'https://www.linkedin.com/',
-  github: 'https://github.com/',
+  email: 'amalazkr8@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/amala-zakira',
 };
 
 const tools = ['Playwright', 'Postman', 'JavaScript', 'TypeScript', 'Jira', 'GitHub Actions'];
@@ -349,7 +347,7 @@ function Home() {
       <footer className="footer">
         <div className="page-width footer-inner">
           <span>© 2025 Amala · Tested with intent.</span>
-          <div className="footer-links"><a href={portfolio.github} target="_blank" rel="noreferrer"><Github size={13} /> GitHub</a><button onClick={() => scrollTo('top')}>Back to top ↑</button></div>
+          <div className="footer-links"><button onClick={() => scrollTo('top')}>Back to top ↑</button></div>
         </div>
       </footer>
     </div>
@@ -363,7 +361,7 @@ function ProfileVisual() {
       <div className="portrait-frame">
         <img className="profile-photo" src="/profile-photo.png" alt="Amala" />
       </div>
-      <div className="social-float"><a href={portfolio.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={14} /></a><a href={portfolio.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={14} /></a><a href={`mailto:${portfolio.email}`} aria-label="Email"><Mail size={14} /></a></div>
+      <div className="social-float"><a href={portfolio.linkedin} target="_blank" rel="noreferrer" aria-label="Open LinkedIn profile"><Linkedin size={14} /></a><a href={`mailto:${portfolio.email}`} aria-label="Send email to Amala"><Mail size={14} /></a></div>
     </div>
   );
 }
