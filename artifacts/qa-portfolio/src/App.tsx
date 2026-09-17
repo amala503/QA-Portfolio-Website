@@ -170,6 +170,7 @@ const projects: Project[] = [
     detail: 'Worked as both QA and System Analyst by reviewing requirements, testing vehicle tracking and booking flows, and supporting reliable day-to-day operations.',
     tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
     tone: 'blue',
+    image: '/mobile-operational.png',
   },
   {
     id: 'marvel',
@@ -179,6 +180,7 @@ const projects: Project[] = [
     detail: 'Worked as QA to test contract management workflows, report defects, and help ensure reliable handling of business agreements.',
     tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
     tone: 'yellow',
+    image: '/marvel.png',
   },
 ];
 
