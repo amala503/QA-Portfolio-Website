@@ -148,34 +148,36 @@ type Project = {
   detail: string;
   tags: string[];
   tone: 'coral' | 'blue' | 'yellow';
+  image?: string;
 };
 
 const projects: Project[] = [
   {
-    id: 'commerce-checkout',
-    eyebrow: 'Web automation',
-    title: 'A checkout that tells the truth',
-    description: 'Mapped critical purchase paths and built a layered smoke suite for browser and API behavior.',
-    detail: 'Moved the team from a long regression list to a focused release signal: critical path checks in CI, exploratory charters around payment edges, and defects with reproducible evidence.',
-    tags: ['Playwright', 'Risk mapping'],
+    id: 'tsatqo',
+    eyebrow: 'Mobile & web QA',
+    title: 'Mobile and web Tsatqo',
+    description: 'Tested attendance, leave, and overtime flows across mobile and web applications.',
+    detail: 'Managed 200+ Qase test cases and used manual and automation testing with Katalon Studio, finding 20+ mobile defects and 15+ web defects.',
+    tags: ['Qase', 'Katalon Studio'],
     tone: 'coral',
+    image: '/tsatqo-mobile.png',
   },
   {
-    id: 'api-contracts',
-    eyebrow: 'API validation',
-    title: 'Contracts before screens',
-    description: 'Validated response shapes and failure states before UI work landed.',
-    detail: 'Created positive, negative, and boundary checks so frontend and backend could work from the same observable contract.',
-    tags: ['Postman', 'REST'],
+    id: 'mobile-operational',
+    eyebrow: 'QA & system analysis',
+    title: 'Mobile Operational',
+    description: 'A mobile application for tracking and booking the company’s operational vehicles.',
+    detail: 'Worked as both QA and System Analyst by reviewing requirements, testing vehicle tracking and booking flows, and supporting reliable day-to-day operations.',
+    tags: ['Manual testing', 'Requirements'],
     tone: 'blue',
   },
   {
-    id: 'release-signal',
-    eyebrow: 'Quality process',
-    title: 'A calmer release signal',
-    description: 'Turned flaky end-to-end checks into actionable feedback for the delivery team.',
-    detail: 'Grouped failures by cause, tightened test data setup, and documented the few signals worth blocking a release on.',
-    tags: ['CI', 'Test design'],
+    id: 'marvel',
+    eyebrow: 'QA & business systems',
+    title: 'MARVEL',
+    description: 'A business contract management application used across the company.',
+    detail: 'Worked as QA to test contract management workflows, report defects, and help ensure reliable handling of business agreements.',
+    tags: ['QA testing', 'Business workflows'],
     tone: 'yellow',
   },
 ];
@@ -390,8 +392,8 @@ function Experience({ date, role, company, projects }: ProfessionalExperience) {
 }
 
 function ProjectCard({ project, active, onToggle }: { project: Project; active: boolean; onToggle: () => void }) {
-  return <article className={`project-card ${project.tone}`} data-testid={`card-project-${project.id}`}>
-    <div className="project-visual"><div className="project-topline"><span>{project.eyebrow}</span><ArrowUpRight size={15} /></div><div className="project-art"><span>{project.tone === 'coral' ? 'QA' : project.tone === 'blue' ? 'API' : 'CI'}</span></div><h3>{project.title}</h3></div>
+  return <article className={`project-card ${project.tone} ${project.image ? 'has-image' : ''}`} data-testid={`card-project-${project.id}`}>
+    <div className="project-visual"><div className="project-topline"><span>{project.eyebrow}</span><ArrowUpRight size={15} /></div>{project.image ? <img className="project-image" src={project.image} alt={`${project.title} preview`} /> : <div className="project-art"><span>{project.tone === 'coral' ? 'QA' : project.tone === 'blue' ? 'OPS' : 'MARVEL'}</span></div>}<h3>{project.title}</h3></div>
     <div className="project-info"><p>{project.description}</p><div className="tag-row">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div><button className="project-action" onClick={onToggle} aria-expanded={active}>{active ? 'Close notes' : 'Read case notes'} <ArrowUpRight size={13} /></button>{active && <div className="project-detail">{project.detail}</div>}</div>
   </article>;
 }
