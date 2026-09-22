@@ -71,7 +71,7 @@ const professionalExperiences: ProfessionalExperience[] = [
         ],
       },
       {
-        name: 'Aplikasi Tsatqo',
+        name: 'Aplikasi Tsatgo',
         bullets: [
           'Developed and managed 200+ test cases using Qase for attendance, leave, and overtime mobile and website applications.',
           'Performed manual and automation testing using Katalon Studio, identifying 20+ defects from mobile and 15+ defects from the website, ranging from minor UI issues to critical functional bugs.',
@@ -155,7 +155,7 @@ const projects: Project[] = [
   {
     id: 'tsatqo',
     eyebrow: 'Mobile & web QA',
-    title: 'Mobile and web Tsatqo',
+    title: 'Mobile and web Tsatgo',
     description: 'Tested attendance, leave, and overtime flows across mobile and web applications.',
     detail: 'Managed 200+ Qase test cases and used manual and automation testing with Katalon Studio, finding 20+ mobile defects and 15+ web defects.',
     tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
