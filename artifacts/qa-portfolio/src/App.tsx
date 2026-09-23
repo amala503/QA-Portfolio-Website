@@ -36,7 +36,7 @@ const portfolio = {
   linkedin: 'https://www.linkedin.com/in/amala-zakira',
 };
 
-const tools = ['Playwright', 'Postman', 'JavaScript', 'TypeScript', 'Jira', 'GitHub Actions'];
+const skills = ['Testing & QA', 'System Analysis', 'Project & Documentation', 'UI & Workflow'];
 
 type ExperienceProject = {
   name: string;
@@ -304,8 +304,8 @@ function Home() {
         <section className="skills-section" id="skills">
           <div className="skills-band">
             <div className="page-width skills-band-inner">
-              <span className="skills-band-label">Tools I work with</span>
-              <div className="skill-pill-list">{tools.map((tool) => <span className="skill-pill" key={tool}>{tool}</span>)}</div>
+              <span className="skills-band-label">Skills I work with</span>
+              <div className="skill-pill-list">{skills.map((skill) => <span className="skill-pill" key={skill}>{skill}</span>)}</div>
             </div>
           </div>
         </section>
