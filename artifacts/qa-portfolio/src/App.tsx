@@ -296,55 +296,16 @@ function Home() {
             </div>
           </div>
           <div className="page-width trust-row">
-            <span>Tools I work with</span>
-            <div className="tool-list">{tools.map((tool) => <span className="tool" key={tool}>{tool}</span>)}</div>
             <div className="quote-mark">“</div>
             <blockquote>Make failures legible, then make the next step easier.</blockquote>
           </div>
         </section>
 
         <section className="skills-section" id="skills">
-          <div className="page-width">
-            <div className="skills-heading">
-              <div>
-                <span className="eyebrow">Toolkit</span>
-                <h2>Skills that make <em>quality visible.</em></h2>
-              </div>
-              <p>From the first requirement to the final release, these are the tools and methods I use to keep product quality clear and actionable.</p>
-            </div>
-            <div className="skills-showcase">
-              <article className="skill-card skill-card-featured">
-                <span className="skill-card-index">01</span>
-                <div>
-                  <strong>Testing &amp; QA</strong>
-                  <p>Reliable checks across the journeys that matter most.</p>
-                </div>
-                <div className="skill-tags"><span>Qase</span><span>Katalon Studio</span><span>SortSite</span></div>
-              </article>
-              <article className="skill-card">
-                <span className="skill-card-index">02</span>
-                <div>
-                  <strong>System Analysis</strong>
-                  <p>Turning product needs into shared, testable context.</p>
-                </div>
-                <div className="skill-tags"><span>Requirement Gathering</span><span>SRS / FRS</span><span>Use Case</span><span>Flowchart</span><span>ERD</span><span>UML</span></div>
-              </article>
-              <article className="skill-card">
-                <span className="skill-card-index">03</span>
-                <div>
-                  <strong>Project &amp; Documentation</strong>
-                  <p>Keeping decisions, issues, and progress easy to follow.</p>
-                </div>
-                <div className="skill-tags"><span>Jira</span><span>Notion</span><span>Microsoft Office</span></div>
-              </article>
-              <article className="skill-card">
-                <span className="skill-card-index">04</span>
-                <div>
-                  <strong>UI &amp; Workflow</strong>
-                  <p>Making flows visible before they become expensive to change.</p>
-                </div>
-                <div className="skill-tags"><span>Figma</span><span>Balsamiq</span><span>Draw.io</span><span>Lucidchart</span></div>
-              </article>
+          <div className="skills-band">
+            <div className="page-width skills-band-inner">
+              <span className="skills-band-label">Tools I work with</span>
+              <div className="skill-pill-list">{tools.map((tool) => <span className="skill-pill" key={tool}>{tool}</span>)}</div>
             </div>
           </div>
         </section>
