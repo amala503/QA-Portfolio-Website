@@ -188,6 +188,7 @@ function Home() {
   const [dark, setDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [detailProject, setDetailProject] = useState<Project | null>(null);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -196,6 +197,23 @@ function Home() {
     setDark(isDark);
     document.documentElement.classList.toggle('dark', isDark);
   }, []);
+
+  useEffect(() => {
+    if (!detailProject) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setDetailProject(null);
+    };
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [detailProject]);
 
   const scrollTo = (id: string) => {
     setMenuOpen(false);
@@ -288,7 +306,7 @@ function Home() {
               <div className="carousel-buttons"><button aria-label="Previous work"><ArrowLeft size={15} /></button><button aria-label="Next work"><ArrowRight size={15} /></button></div>
             </div>
             <div className="project-grid reference-project-grid">
-              {projects.map((project) => <ProjectCard key={project.id} project={project} active={activeProject === project.id} onToggle={() => setActiveProject(activeProject === project.id ? null : project.id)} />)}
+              {projects.map((project) => <ProjectCard key={project.id} project={project} active={activeProject === project.id} onToggle={() => setActiveProject(activeProject === project.id ? null : project.id)} onDetail={() => setDetailProject(project)} />)}
             </div>
           </div>
         </section>
@@ -354,6 +372,7 @@ function Home() {
           <div className="footer-links"><button onClick={() => scrollTo('top')}>Back to top ↑</button></div>
         </div>
       </footer>
+      {detailProject && <ProjectDetailModal project={detailProject} onClose={() => setDetailProject(null)} />}
     </div>
   );
 }
@@ -393,11 +412,48 @@ function Experience({ date, role, company, projects }: ProfessionalExperience) {
   );
 }
 
-function ProjectCard({ project, active, onToggle }: { project: Project; active: boolean; onToggle: () => void }) {
-  return <article className={`project-card ${project.tone} ${project.image ? 'has-image' : ''}`} data-testid={`card-project-${project.id}`}>
-    <div className="project-visual"><div className="project-topline"><span>{project.eyebrow}</span><ArrowUpRight size={15} /></div>{project.image ? <img className="project-image" src={project.image} alt={`${project.title} preview`} /> : <div className="project-art"><span>{project.tone === 'coral' ? 'QA' : project.tone === 'blue' ? 'OPS' : 'MARVEL'}</span></div>}<h3>{project.title}</h3></div>
-    <div className="project-info"><p>{project.description}</p><div className="tag-row">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div><button className="project-action" onClick={onToggle} aria-expanded={active}>{active ? 'Close notes' : 'Read case notes'} <ArrowUpRight size={13} /></button>{active && <div className="project-detail">{project.detail}</div>}</div>
-  </article>;
+function ProjectCard({ project, active, onToggle, onDetail }: { project: Project; active: boolean; onToggle: () => void; onDetail: () => void }) {
+  return (
+    <article className={`project-card ${project.tone} ${project.image ? 'has-image' : ''}`} data-testid={`card-project-${project.id}`}>
+      <div className="project-visual">
+        <div className="project-topline"><span>{project.eyebrow}</span><ArrowUpRight size={15} /></div>
+        {project.image ? <img className="project-image" src={project.image} alt={`${project.title} preview`} /> : <div className="project-art"><span>{project.tone === 'coral' ? 'QA' : project.tone === 'blue' ? 'OPS' : 'MARVEL'}</span></div>}
+        <h3>{project.title}</h3>
+      </div>
+      <div className="project-info">
+        <p>{project.description}</p>
+        <div className="tag-row">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div>
+        <div className="project-actions">
+          <button className="project-action" onClick={onToggle} aria-expanded={active}>{active ? 'Close notes' : 'Read case notes'} <ArrowUpRight size={13} /></button>
+          <button className="project-detail-action" onClick={onDetail} aria-label={`View details for ${project.title}`}>Detail <ArrowUpRight size={13} /></button>
+        </div>
+        {active && <div className="project-detail">{project.detail}</div>}
+      </div>
+    </article>
+  );
+}
+
+function ProjectDetailModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  return (
+    <div className="project-modal-backdrop" role="presentation" onMouseDown={onClose}>
+      <section className={`project-modal ${project.tone}`} role="dialog" aria-modal="true" aria-labelledby={`project-detail-title-${project.id}`} onMouseDown={(event) => event.stopPropagation()}>
+        <button className="project-modal-close" onClick={onClose} aria-label="Close project details"><X size={18} /></button>
+        <div className="project-modal-media">
+          {project.image ? <img src={project.image} alt={`${project.title} QA work`} /> : <div className="project-art"><span>QA</span></div>}
+        </div>
+        <div className="project-modal-copy">
+          <span className="work-eyebrow">QA project detail</span>
+          <h2 id={`project-detail-title-${project.id}`}>{project.title}</h2>
+          <p>{project.description}</p>
+          <div className="tag-row">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div>
+          <div className="project-modal-notes">
+            <span>Case notes</span>
+            <p>{project.detail}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
 
 function Router() {

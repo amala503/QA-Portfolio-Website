@@ -200,8 +200,27 @@ blockquote { margin: 0; color: hsl(var(--foreground)); font-size: 12px; font-wei
 .project-info p { margin: 0; color: hsl(0 0% 100% / .68); font-size: 11px; line-height: 1.65; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 15px; }
 .tag { padding: 5px 8px; border: 1px solid hsl(0 0% 100% / .15); border-radius: 999px; color: hsl(0 0% 100% / .7); font: 9px var(--app-font-mono); }
-.project-action { display: inline-flex; align-items: center; gap: 5px; margin-top: 17px; padding: 0; border: 0; background: none; color: hsl(var(--accent)); cursor: pointer; font: 700 10px var(--app-font-sans); }
+.project-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 17px; }
+.project-action, .project-detail-action { display: inline-flex; align-items: center; gap: 5px; padding: 0; border: 0; background: none; color: hsl(var(--accent)); cursor: pointer; font: 700 10px var(--app-font-sans); }
+.project-detail-action { color: hsl(0 0% 100% / .78); }
+.project-action:hover, .project-detail-action:hover { color: white; }
 .project-detail { margin-top: 14px; padding-top: 13px; border-top: 1px dashed hsl(0 0% 100% / .17); color: hsl(0 0% 100% / .7); font-size: 10px; line-height: 1.65; animation: reveal .25s ease both; }
+.project-modal-backdrop { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; background: hsl(220 31% 9% / .78); backdrop-filter: blur(10px); animation: reveal .2s ease both; }
+.project-modal { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr); width: min(900px, 100%); max-height: min(720px, calc(100dvh - 48px)); overflow: auto; border: 1px solid hsl(0 0% 100% / .12); border-radius: 24px; background: hsl(var(--work-card)); color: white; box-shadow: 0 24px 80px hsl(220 40% 4% / .42); }
+.project-modal-close { position: absolute; top: 16px; right: 16px; z-index: 3; display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid hsl(0 0% 100% / .2); border-radius: 50%; background: hsl(220 30% 10% / .52); color: white; cursor: pointer; }
+.project-modal-close:hover { background: hsl(var(--accent)); }
+.project-modal-media { display: grid; place-items: center; min-height: 420px; padding: 30px; overflow: hidden; }
+.project-modal.coral .project-modal-media { background: hsl(var(--coral)); }
+.project-modal.blue .project-modal-media { background: hsl(var(--blue)); }
+.project-modal.yellow .project-modal-media { background: hsl(var(--yellow)); }
+.project-modal-media img { display: block; width: 100%; height: 100%; max-height: 500px; object-fit: contain; }
+.project-modal-copy { align-self: center; padding: 42px 38px 38px; }
+.project-modal-copy h2 { max-width: 360px; margin: 18px 0 14px; font-size: clamp(2rem, 4vw, 3.3rem); line-height: .98; letter-spacing: -.07em; }
+.project-modal-copy > p { margin: 0; color: hsl(0 0% 100% / .7); font-size: 12px; line-height: 1.7; }
+.project-modal-copy .tag-row { margin-top: 22px; }
+.project-modal-notes { margin-top: 28px; padding-top: 18px; border-top: 1px dashed hsl(0 0% 100% / .18); }
+.project-modal-notes > span { color: hsl(var(--accent)); font: 700 10px var(--app-font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.project-modal-notes p { margin: 9px 0 0; color: hsl(0 0% 100% / .72); font-size: 11px; line-height: 1.7; }
 
 .resume-section { padding: 112px 0 105px; }
 .resume-grid { display: grid; grid-template-columns: 1.22fr .78fr; gap: 95px; }
@@ -294,6 +313,11 @@ blockquote { margin: 0; color: hsl(var(--foreground)); font-size: 12px; font-wei
   .work-heading { align-items: start; }
   .work-heading h2 { font-size: 3.3rem; }
   .carousel-buttons { padding-top: 20px; }
+  .project-modal-backdrop { padding: 12px; }
+  .project-modal { grid-template-columns: 1fr; max-height: calc(100dvh - 24px); border-radius: 20px; }
+  .project-modal-media { min-height: 250px; padding: 22px; }
+  .project-modal-copy { padding: 28px 24px 26px; }
+  .project-modal-copy h2 { margin-top: 14px; font-size: 2.4rem; }
   .resume-section { padding: 78px 0 70px; }
   .timeline-item { grid-template-columns: 1fr; gap: 10px; }
   .timeline-date { justify-self: start; }
