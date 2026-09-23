@@ -209,11 +209,14 @@ blockquote { margin: 0; color: hsl(var(--foreground)); font-size: 12px; font-wei
 .project-modal { position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr); width: min(900px, 100%); max-height: min(720px, calc(100dvh - 48px)); overflow: auto; border: 1px solid hsl(0 0% 100% / .12); border-radius: 24px; background: hsl(var(--work-card)); color: white; box-shadow: 0 24px 80px hsl(220 40% 4% / .42); }
 .project-modal-close { position: absolute; top: 16px; right: 16px; z-index: 3; display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid hsl(0 0% 100% / .2); border-radius: 50%; background: hsl(220 30% 10% / .52); color: white; cursor: pointer; }
 .project-modal-close:hover { background: hsl(var(--accent)); }
-.project-modal-media { display: grid; place-items: center; min-height: 420px; padding: 30px; overflow: hidden; }
+.project-modal-media { display: grid; place-items: center; align-content: center; gap: 18px; min-height: 420px; padding: 30px; overflow: hidden; }
 .project-modal.coral .project-modal-media { background: hsl(var(--coral)); }
 .project-modal.blue .project-modal-media { background: hsl(var(--blue)); }
 .project-modal.yellow .project-modal-media { background: hsl(var(--yellow)); }
-.project-modal-media img { display: block; width: 100%; height: 100%; max-height: 500px; object-fit: contain; }
+.project-modal-media > img { display: block; width: 100%; max-height: 430px; object-fit: contain; }
+.project-modal-secondary-media { display: grid; gap: 7px; width: 100%; padding-top: 14px; border-top: 1px solid hsl(0 0% 100% / .22); }
+.project-modal-secondary-media > span { color: hsl(0 0% 100% / .76); font: 9px var(--app-font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.project-modal-secondary-media img { display: block; width: 100%; max-height: 190px; border-radius: 9px; background: white; object-fit: contain; }
 .project-modal-copy { align-self: center; padding: 42px 38px 38px; }
 .project-modal-copy h2 { max-width: 360px; margin: 18px 0 14px; font-size: clamp(2rem, 4vw, 3.3rem); line-height: .98; letter-spacing: -.07em; }
 .project-modal-copy > p { margin: 0; color: hsl(0 0% 100% / .7); font-size: 12px; line-height: 1.7; }
@@ -316,6 +319,8 @@ blockquote { margin: 0; color: hsl(var(--foreground)); font-size: 12px; font-wei
   .project-modal-backdrop { padding: 12px; }
   .project-modal { grid-template-columns: 1fr; max-height: calc(100dvh - 24px); border-radius: 20px; }
   .project-modal-media { min-height: 250px; padding: 22px; }
+  .project-modal-media > img { max-height: 240px; }
+  .project-modal-secondary-media img { max-height: 150px; }
   .project-modal-copy { padding: 28px 24px 26px; }
   .project-modal-copy h2 { margin-top: 14px; font-size: 2.4rem; }
   .resume-section { padding: 78px 0 70px; }
