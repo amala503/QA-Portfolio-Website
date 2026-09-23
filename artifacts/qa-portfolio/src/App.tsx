@@ -306,7 +306,7 @@ function Home() {
         <section className="work-section" id="work">
           <div className="page-width">
             <div className="work-heading">
-              <div><span className="work-eyebrow">Selected work</span><h2>My recent <span>work</span></h2></div>
+              <div><h2>My recent <span>work</span></h2></div>
               <div className="carousel-buttons"><button aria-label="Previous work"><ArrowLeft size={15} /></button><button aria-label="Next work"><ArrowRight size={15} /></button></div>
             </div>
             <div className="project-grid reference-project-grid">
