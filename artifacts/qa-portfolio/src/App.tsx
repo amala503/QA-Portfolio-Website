@@ -167,7 +167,7 @@ const projects: Project[] = [
   {
     id: 'mobile-operational',
     eyebrow: 'QA & system analysis',
-    title: 'Mobile Operational',
+    title: 'Mobil Operational',
     description: 'A mobile application for tracking and booking the company’s operational vehicles.',
     detail: 'Worked as both QA and System Analyst by reviewing requirements, testing vehicle tracking and booking flows, and supporting reliable day-to-day operations.',
     tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
