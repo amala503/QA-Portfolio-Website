@@ -172,9 +172,13 @@ blockquote { margin: 0; color: hsl(var(--foreground)); font-size: 12px; font-wei
 .skills-band { border-top: 1px solid hsl(0 0% 100% / .14); border-bottom: 1px solid hsl(0 0% 100% / .14); background: hsl(var(--work-surface)); color: white; }
 .skills-band-inner { display: grid; grid-template-columns: 160px 1fr; gap: 24px; align-items: center; padding: 27px 0; }
 .skills-band-label { color: hsl(0 0% 100% / .72); font: 10px var(--app-font-mono); letter-spacing: .1em; text-transform: uppercase; }
-.skill-pill-list { display: flex; flex-wrap: wrap; gap: 10px; }
-.skill-pill { padding: 10px 14px; border: 1px solid hsl(0 0% 100% / .16); border-radius: 999px; background: hsl(0 0% 100% / .03); color: white; font-size: 11px; font-weight: 700; transition: border-color .2s ease, background .2s ease, transform .2s ease; }
-.skill-pill:hover { border-color: hsl(var(--accent)); background: hsl(var(--accent) / .2); transform: translateY(-2px); }
+.skill-group-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.skill-group { display: grid; gap: 9px; padding: 12px 14px; border: 1px solid hsl(0 0% 100% / .16); border-radius: 16px; background: hsl(0 0% 100% / .03); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+.skill-group:hover { border-color: hsl(var(--accent)); background: hsl(var(--accent) / .12); transform: translateY(-2px); }
+.skill-group strong { color: white; font-size: 11px; letter-spacing: -.02em; }
+.skill-group-points { display: flex; flex-wrap: wrap; gap: 5px 11px; }
+.skill-group-points span { color: hsl(0 0% 100% / .62); font: 9px var(--app-font-mono); }
+.skill-group-points span::before { content: '•'; margin-right: 5px; color: hsl(var(--accent)); }
 
 .work-section { margin: 0 28px; padding: 67px 0 78px; border-radius: 28px; background: hsl(var(--work-surface)); color: hsl(0 0% 100%); }
 .work-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 35px; }
@@ -314,8 +318,8 @@ blockquote { margin: 0; color: hsl(var(--foreground)); font-size: 12px; font-wei
   blockquote { max-width: 250px; }
   .skills-section { padding-bottom: 54px; }
   .skills-band-inner { grid-template-columns: 1fr; gap: 14px; padding: 22px 0 24px; }
-  .skill-pill-list { gap: 8px; }
-  .skill-pill { padding: 9px 12px; font-size: 10px; }
+  .skill-group-list { grid-template-columns: 1fr; gap: 9px; }
+  .skill-group { padding: 12px 13px; }
   .work-section { margin: 0 10px; padding: 48px 0 54px; border-radius: 23px; }
   .work-heading { align-items: start; }
   .work-heading h2 { font-size: 3.3rem; }

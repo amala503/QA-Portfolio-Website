@@ -36,7 +36,12 @@ const portfolio = {
   linkedin: 'https://www.linkedin.com/in/amala-zakira',
 };
 
-const skills = ['Testing & QA', 'System Analysis', 'Project & Documentation', 'UI & Workflow'];
+const skillGroups = [
+  { name: 'Testing & QA', points: ['Qase', 'Katalon Studio', 'SortSite'] },
+  { name: 'System Analysis', points: ['Requirement Gathering', 'SRS / FRS', 'Use Case', 'Flowchart', 'ERD', 'UML'] },
+  { name: 'Project & Documentation', points: ['Jira', 'Notion', 'Microsoft Office'] },
+  { name: 'UI & Workflow', points: ['Figma', 'Balsamiq', 'Draw.io', 'Lucidchart'] },
+];
 
 type ExperienceProject = {
   name: string;
@@ -305,7 +310,16 @@ function Home() {
           <div className="skills-band">
             <div className="page-width skills-band-inner">
               <span className="skills-band-label">Skills I work with</span>
-              <div className="skill-pill-list">{skills.map((skill) => <span className="skill-pill" key={skill}>{skill}</span>)}</div>
+              <div className="skill-group-list">
+                {skillGroups.map((group) => (
+                  <article className="skill-group" key={group.name}>
+                    <strong>{group.name}</strong>
+                    <div className="skill-group-points">
+                      {group.points.map((point) => <span key={point}>{point}</span>)}
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
