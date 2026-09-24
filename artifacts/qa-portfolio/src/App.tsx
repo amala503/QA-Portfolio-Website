@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -199,6 +199,7 @@ function Home() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [detailProject, setDetailProject] = useState<Project | null>(null);
   const [copied, setCopied] = useState(false);
+  const projectGridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem('qa-theme');
@@ -240,6 +241,13 @@ function Home() {
     await navigator.clipboard?.writeText(portfolio.email);
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
+  };
+
+  const scrollProjects = (direction: number) => {
+    projectGridRef.current?.scrollBy({
+      left: direction * Math.max(projectGridRef.current.clientWidth * 0.78, 320),
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -328,9 +336,12 @@ function Home() {
           <div className="page-width">
             <div className="work-heading">
               <div><h2>My recent <span>work</span></h2></div>
-              <div className="carousel-buttons"><button aria-label="Previous work"><ArrowLeft size={15} /></button><button aria-label="Next work"><ArrowRight size={15} /></button></div>
+              <div className="carousel-buttons">
+                <button onClick={() => scrollProjects(-1)} aria-label="Previous work"><ArrowLeft size={15} /></button>
+                <button onClick={() => scrollProjects(1)} aria-label="Next work"><ArrowRight size={15} /></button>
+              </div>
             </div>
-            <div className="project-grid reference-project-grid">
+            <div className="project-grid reference-project-grid" ref={projectGridRef}>
               {projects.map((project) => <ProjectCard key={project.id} project={project} active={activeProject === project.id} onToggle={() => setActiveProject(activeProject === project.id ? null : project.id)} onDetail={() => setDetailProject(project)} />)}
             </div>
           </div>
