@@ -156,6 +156,7 @@ type Project = {
   image?: string;
   detailImage?: string;
   bugReportImage?: string;
+  uatImage?: string;
 };
 
 const projects: Project[] = [
@@ -170,6 +171,7 @@ const projects: Project[] = [
     image: '/tsatqo-mobile.png',
     detailImage: '/tsatgo-katalon.png',
     bugReportImage: '/tsatgo-bug-report.png',
+    uatImage: '/tsatgo-uat.png',
   },
   {
     id: 'mobile-operational',
@@ -469,6 +471,7 @@ function ProjectDetailModal({ project, onClose }: { project: Project; onClose: (
           {project.image ? <img src={project.image} alt={`${project.title} QA work`} /> : <div className="project-art"><span>QA</span></div>}
           {project.detailImage && <div className="project-modal-secondary-media"><span>Katalon test execution</span><img src={project.detailImage} alt={`${project.title} Katalon test execution`} /></div>}
           {project.bugReportImage && <div className="project-modal-secondary-media"><span>Bug report</span><img src={project.bugReportImage} alt={`${project.title} bug report`} /></div>}
+          {project.uatImage && <div className="project-modal-secondary-media"><span>UAT document</span><img src={project.uatImage} alt={`${project.title} user acceptance test document`} /></div>}
         </div>
         <div className="project-modal-copy">
           <span className="work-eyebrow">QA project detail</span>
