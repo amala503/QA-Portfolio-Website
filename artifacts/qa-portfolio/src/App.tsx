@@ -182,6 +182,9 @@ const projects: Project[] = [
     tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
     tone: 'blue',
     image: '/mobile-operational.png',
+    detailImage: '/mobile-operational-katalon.png',
+    bugReportImage: '/mobile-operational-bug-report.png',
+    uatImage: '/mobile-operational-uat.png',
   },
   {
     id: 'marvel',
