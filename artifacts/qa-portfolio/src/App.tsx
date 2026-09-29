@@ -162,11 +162,11 @@ type Project = {
 const projects: Project[] = [
   {
     id: 'tsatqo',
-    eyebrow: 'Mobile & web QA',
+    eyebrow: 'Internal system · Mobile & web QA',
     title: 'Mobile and web Tsatgo',
     description: 'Tested attendance, leave, and overtime flows across mobile and web applications.',
     detail: 'Managed 200+ Qase test cases and used manual and automation testing with Katalon Studio, finding 20+ mobile defects and 15+ web defects.',
-    tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
+    tags: ['Internal system', 'Qase', 'Katalon', 'Bug reporting', 'Manual testing'],
     tone: 'coral',
     image: '/tsatqo-mobile.png',
     detailImage: '/tsatgo-katalon.png',
@@ -175,11 +175,11 @@ const projects: Project[] = [
   },
   {
     id: 'mobile-operational',
-    eyebrow: 'QA & system analysis',
+    eyebrow: 'Internal system · QA & system analysis',
     title: 'Mobil Operational',
     description: 'A mobile application for tracking and booking the company’s operational vehicles.',
     detail: 'Worked as both QA and System Analyst by reviewing requirements, testing vehicle tracking and booking flows, and supporting reliable day-to-day operations.',
-    tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
+    tags: ['Internal system', 'Qase', 'Katalon', 'Bug reporting', 'Manual testing'],
     tone: 'blue',
     image: '/mobile-operational.png',
     detailImage: '/mobile-operational-katalon.png',
@@ -188,13 +188,23 @@ const projects: Project[] = [
   },
   {
     id: 'marvel',
-    eyebrow: 'QA & business systems',
+    eyebrow: 'Internal system · QA & business systems',
     title: 'MARVEL',
     description: 'A business contract management application used across the company.',
     detail: 'Worked as QA to test contract management workflows, report defects, and help ensure reliable handling of business agreements.',
-    tags: ['Qase', 'Katalon', 'Bug reporting', 'Manual testing', 'Requirements'],
+    tags: ['Internal system', 'Qase', 'Katalon', 'Bug reporting', 'Manual testing'],
     tone: 'yellow',
     image: '/marvel.png',
+  },
+  {
+    id: 'partnerhub',
+    eyebrow: 'Internal system · QA & deal registration',
+    title: 'PartnerHub',
+    description: 'An internal collaboration and deal registration system for monitoring project opportunities with partners and internal teams.',
+    detail: 'Developed an application to support collaboration efforts in winning targeted projects, enabling monitoring of the List of Project (LOP) from both internal and partner sides, and functioning as a Deal Registration tool to register projects from partners before they are shared with the relevant internal team.',
+    tags: ['Internal system', 'LOP monitoring', 'Deal registration', 'Partner collaboration', 'Manual testing'],
+    tone: 'coral',
+    image: '/partnerhub.png',
   },
 ];
 
@@ -477,7 +487,7 @@ function ProjectDetailModal({ project, onClose }: { project: Project; onClose: (
           {project.uatImage && <div className="project-modal-secondary-media"><span>UAT document</span><img src={project.uatImage} alt={`${project.title} user acceptance test document`} /></div>}
         </div>
         <div className="project-modal-copy">
-          <span className="work-eyebrow">QA project detail</span>
+          <span className="work-eyebrow">Internal system detail</span>
           <h2 id={`project-detail-title-${project.id}`}>{project.title}</h2>
           <p>{project.description}</p>
           <div className="tag-row">{project.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div>
